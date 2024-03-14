@@ -10,4 +10,7 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'firstAngularApp';
+  onButtonClick() {
+    console.log("You clicked button");
+  }
 }
