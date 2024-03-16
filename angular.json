@@ -7,7 +7,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "firstAngularApp": {
+    "WateringPlantApp": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -21,7 +21,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/first-angular-app",
+            "outputPath": "dist/watering-plant-app",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -71,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "firstAngularApp:build:production"
+              "buildTarget": "WateringPlantApp:build:production"
             },
             "development": {
-              "buildTarget": "firstAngularApp:build:development"
+              "buildTarget": "WateringPlantApp:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "firstAngularApp:build"
+            "buildTarget": "WateringPlantApp:build"
           }
         },
         "test": {
