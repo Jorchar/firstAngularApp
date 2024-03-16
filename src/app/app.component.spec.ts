@@ -20,7 +20,7 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('firstAngularApp');
   });
 
-  it('should button change value', () => {
+  it('button should change value', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     const button = fixture.debugElement.nativeElement.querySelector('button');
