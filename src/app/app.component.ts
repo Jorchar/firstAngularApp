@@ -9,9 +9,5 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'firstAngularApp';
-  onButtonClick() {
-    this.title = 'with BUTTON';
-    console.log("You clicked button");
-  }
+  title = 'WateringPlantApp';
 }
