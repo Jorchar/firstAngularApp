@@ -1,9 +1,9 @@
 <section>
   <form>
     <input type="text" placeholder="Filter by plant">
-    <button class="primary" type="button">Search</button>
+    <button mat-flat-button type="button">Search</button>
   </form>
 </section>
 <section class="results">
-
+<app-plant-item *ngFor="let plantItem of plantItemList" [plantItem] = "plantItem"></app-plant-item>
 </section>
