@@ -1,16 +1,17 @@
 <article>
-  <img class="listing-photo" [src]="plantItem?.photo">
   <section class="listing-description">
-    <h2 class="listing-heading">
-      {{plantItem?.name}}
-    </h2>
-    <p class="listing-location">
-      {{plantItem?.location}}\n
-      {{plantItem?.waterred}}\n
-      {{plantItem?.waterredDate}}
-    </p>
-  </section>
-  <section>
-    <button type="button">I waterred plant!</button>
+  <img class="listing-photo" [src]="plantItem?.photo">
+  <form [formGroup]="applyForm" (submit)="confirmEdit()">
+    <label for="plant-name">Plant name</label><br>
+    <input id="plant-name" type="text" formControlName="plantName"><br>
+    <label for="plant-location">Plant location</label><br>
+    <input id="plant-location" type="text" formControlName="plantLocation"><br>
+    <label for="plant-waterred">Waterred</label><br>
+    <input id="plant-waterred" type="checkbox" formControlName="plantWaterred"><br>
+    <label for="plant-waterred-date">Waterred date</label><br>
+    <input id="plant-waterred-date" type="date" formControlName="waterredDate"><br>
+    <br>
+    <button mat-flat-button type="submit">CONFIRM</button>
+  </form>
   </section>
 </article>
