@@ -1,1 +1,16 @@
-<p>plant-details works! {{ plantItemId }}</p>
+<article>
+  <img class="listing-photo" [src]="plantItem?.photo">
+  <section class="listing-description">
+    <h2 class="listing-heading">
+      {{plantItem?.name}}
+    </h2>
+    <p class="listing-location">
+      {{plantItem?.location}}\n
+      {{plantItem?.waterred}}\n
+      {{plantItem?.waterredDate}}
+    </p>
+  </section>
+  <section>
+    <button type="button">I waterred plant!</button>
+  </section>
+</article>

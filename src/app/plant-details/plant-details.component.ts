@@ -1,4 +1,6 @@
 import { Component, inject } from '@angular/core';
+import { PlantService } from '../plant.service';
+import { PlantItem } from './plantItem';
 import { ActivatedRoute } from '@angular/router'
 
 @Component({
@@ -9,10 +11,13 @@ import { ActivatedRoute } from '@angular/router'
   styleUrl: './plant-details.component.scss'
 })
 export class PlantDetailsComponent {
+
 route: ActivatedRoute = inject(ActivatedRoute);
-plantItemId = 0;
+plantService = inject(PlantService);
+plantItem: PlantItem | undefined;
 
 constructor(){
-this.plantItemId = Number(this.route.snapshot.params['id'])
+  const plantItemId = Number(this.route.snapshot.params['id']);
+  this.plantItem = this.plantService.getPlantItemsById(plantItemId);
 }
 }
