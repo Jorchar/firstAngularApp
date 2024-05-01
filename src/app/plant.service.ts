@@ -1,60 +1,25 @@
-import { Injectable } from '@angular/core';
-import { PlantItem } from './plantItem';
+import { Injectable, inject } from "@angular/core";
+import { PlantItem } from "./plantItem";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class PlantService {
-protected plantItemList: PlantItem[] = [
-{
-"id":1,
-"name": "Yuka",
-"location": "Salon",
-"photo": "/assets/plant.svg",
-"waterred": true,
-"waterredDate": 10
-},
-{
-"id":2,
-"name": "Orchidea",
-"location": "Kuchnia",
-"photo": "/assets/plant.svg",
-"waterred": false,
-"waterredDate": 1
-},
-{
-"id":3,
-"name": "Cactus",
-"location": "Salon",
-"photo": "/assets/plant.svg",
-"waterred": true,
-"waterredDate": 12
-},
-{
-"id":4,
-"name": "Monstera",
-"location": "Salon",
-"photo": "/assets/plant.svg",
-"waterred": true,
-"waterredDate": 15
-},
-{
-"id":5,
-"name": "Sukulent",
-"location": "Kuchnia",
-"photo": "/assets/plant.svg",
-"waterred": false,
-"waterredDate": 10
-}
-];
-  constructor() { }
+  private http = inject(HttpClient);
+  private baseUrl = "http://localhost:8080/plant";
+  constructor() {}
 
-  getAllPlantItems() : PlantItem[] {
-  return this.plantItemList;
+  getAllPlantItems(): Observable<PlantItem[]> {
+    return this.http.get<PlantItem[]>(this.baseUrl);
   }
 
-  getPlantItemsById(id: Number): PlantItem |
-  undefined {
-  return this.plantItemList.find(plantItem => plantItem.id === id);
+  getPlantItemById(id: Number): Observable<PlantItem> | undefined {
+    return this.http.get<PlantItem>(this.baseUrl+"/"+id);
+  }
+
+  editPlant(patchedPlant: any): Observable<PlantItem> {
+    return this.http.patch<PlantItem>(this.baseUrl, patchedPlant);
   }
 }

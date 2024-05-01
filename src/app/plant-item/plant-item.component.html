@@ -2,5 +2,6 @@
   <img class="listing-photo" [src]="plantItem.photo" alt="Image of {{plantItem.name}}">
   <h2 class="listing-heading">{{plantItem.name}}</h2>
   <p class="listing-plant">{{plantItem.location}}</p>
-  <a [routerLink]="['/plant-details', plantItem.id]">Go to details</a>
+  <button mat-flat-button type="button">I waterred plant!</button>
+  <button mat-flat-button type="button" [routerLink]="['/plant-details', plantItem.id]">EDIT</button>
 </section>
