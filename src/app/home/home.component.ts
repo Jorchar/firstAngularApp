@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { PlantItemComponent } from "../plant-item/plant-item.component";
 import { PlantItem } from "../plantItem";
@@ -12,11 +12,13 @@ import { PlantService } from "../plant.service";
   templateUrl: "./home.component.html",
   styleUrl: "./home.component.scss",
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   plantItemList: PlantItem[] = [];
   plantService: PlantService = inject(PlantService);
 
-  constructor() {
-    this.plantItemList = this.plantService.getAllPlantItems();
+  constructor() {}
+
+  ngOnInit(): void {
+    this.plantService.getAllPlantItems().subscribe(plantItemList=>(this.plantItemList = plantItemList));
   }
 }

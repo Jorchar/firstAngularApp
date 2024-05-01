@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import { formatDate } from "@angular/common"
 import { PlantService } from "../plant.service";
 import { PlantItem } from "../plantItem";
@@ -13,10 +13,11 @@ import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
   templateUrl: "./plant-details.component.html",
   styleUrl: "./plant-details.component.scss",
 })
-export class PlantDetailsComponent {
+export class PlantDetailsComponent implements OnInit {
   route: ActivatedRoute = inject(ActivatedRoute);
   plantService = inject(PlantService);
   plantItem: PlantItem | undefined;
+  plantItemId: number;
   applyForm = new FormGroup({
     plantName: new FormControl(""),
     plantLocation: new FormControl(""),
@@ -25,30 +26,26 @@ export class PlantDetailsComponent {
   });
 
   constructor() {
-    const plantItemId = Number(this.route.snapshot.params["id"]);
-    this.plantItem = this.plantService.getPlantItemsById(plantItemId);
-    if(this.plantItem === undefined){
-    //TODO Error 404 item not found
-    }else{
-      this.applyForm.patchValue({
-      plantName: this.plantItem.name,
-      plantLocation: this.plantItem.location,
-      plantWaterred: this.plantItem.waterred,
-      waterredDate: this.plantItem.waterredDate,
-      });
-    }
+    this.plantItemId = Number(this.route.snapshot.params['id']);
+    this.plantItem = undefined;
   }
+
+  ngOnInit(): void{
+    this.plantService.getPlantItemById(this.plantItemId)?.subscribe(plantItem=>(this.plantItem = plantItem));
+  }
+
   confirmEdit() {
-    if (this.plantItem === undefined) {
-    //TODO Error 404 item not found
-    } else {
-      this.plantService.editPlant(
-        this.plantItem.id,
-        this.applyForm.value.plantName ?? this.plantItem.name,
-        this.applyForm.value.plantLocation ?? this.plantItem.location,
-        this.applyForm.value.plantWaterred ?? this.plantItem?.waterred,
-        this.applyForm.value.waterredDate ?? this.plantItem?.waterredDate
-      );
-    }
+      this.plantService.editPlant({
+      id: this.plantItemId,
+      name: this.applyForm.value.plantName ?? '',
+      location: this.applyForm.value.plantLocation ?? '',
+      photo: "/assets/plant.svg",
+      waterred: this.applyForm.value.plantWaterred ?? false,
+      waterredDate: this.applyForm.value.waterredDate ?? '2024-04-22'
+  }).subscribe(
+    (response) => console.log(response),
+    (error: any) => console.log(error),
+    () => console.log("Plant patched")
+  )
   }
 }
