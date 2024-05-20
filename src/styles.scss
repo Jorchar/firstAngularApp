@@ -1,27 +1,53 @@
+@use '@angular/material' as mat;
+@include mat.core();
+
+$custom-primary: mat.define-palette(mat.$light-green-palette, 700);
+$custom-accent: mat.define-palette(mat.$lime-palette, 600);
+$custom-warn: mat.define-palette(mat.$red-palette);
+
+$custom-theme: mat.define-light-theme((
+  color: (
+    primary: $custom-primary,
+    accent: $custom-accent,
+    warn: $custom-warn,
+  ),
+));
+
+@include mat.all-component-themes($custom-theme);
+$colors: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900;
+
+:root {
+  @each $color in $colors{
+    --primary-color-#{$color}: #{mat.get-theme-color($custom-theme, primary, $color)};
+    --accent-color-#{$color}: #{mat.get-theme-color($custom-theme, accent, $color)};
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background-color);
-  padding:10px;
   font-family: 'Tahoma', sans-serif;
-}
-:root {
-  --primary-color: #58B13A;
-  --accent-color: #E9F5EA;
-  --background-color: #CEE6C3;
+  background-color: var(--primary-color-200);
 }
 
-button.primary {
-  font-weight: bolder;
-  padding: 10px;
-  border: solid 1px var(--primary-color);
-  background: var(--primary-color);
+a {
+  font-family: 'Poetsen One', sans-serif;
+}
+
+button {
+  font-family: 'Poetsen One', sans-serif;
+  font-size: 1rem;
+  background-color: var(--primary-color-800);
   color: white;
-  border-radius: 8px;
+  padding: 0 10px;
+  border: solid 1px var(--primary-color-800);
+  transition: 0.3s;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+button:hover {
+  box-shadow: 0px 0px 10px var(--primary-color-900);
+}
