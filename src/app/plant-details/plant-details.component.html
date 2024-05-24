@@ -1,15 +1,15 @@
 <article>
   <section class="listing-description">
   <img class="listing-photo" [src]="plantItem?.photo">
-  <form [formGroup]="applyForm" (submit)="confirmEdit()">
+  <form [formGroup]="editPlantForm" (submit)="confirmEdit()">
     <label for="plant-name">Plant name</label><br>
     <input id="plant-name" type="text" formControlName="plantName"><br>
     <label for="plant-location">Plant location</label><br>
     <input id="plant-location" type="text" formControlName="plantLocation"><br>
-    <label for="plant-waterred">Waterred</label><br>
-    <input id="plant-waterred" type="checkbox" formControlName="plantWaterred"><br>
-    <label for="plant-waterred-date">Waterred date</label><br>
-    <input id="plant-waterred-date" type="date" formControlName="waterredDate"><br>
+    <label for="plant-watered">Waterred</label><br>
+    <input id="plant-watered" type="checkbox" formControlName="plantWatered"><br>
+    <label for="plant-watered-date">Waterred date</label><br>
+    <input id="plant-watered-date" type="date" formControlName="wateredDate"><br>
     <br>
     <button mat-flat-button type="submit">CONFIRM</button>
   </form>
