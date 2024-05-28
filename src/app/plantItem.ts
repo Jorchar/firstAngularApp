@@ -3,6 +3,6 @@ export interface PlantItem {
   name: string;
   location: string;
   photo: string;
-  waterred: boolean;
-  waterredDate: string;
+  watered: boolean;
+  wateredDate: string;
 }

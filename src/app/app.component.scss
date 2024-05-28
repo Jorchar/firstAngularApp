@@ -1,39 +1,24 @@
 .content {
-  margin: 60px 10px 10px 10px;
+  margin: 70px 10px 30px 10px;
 }
 nav {
   position: fixed;
   z-index: 5;
   top: 0;
   width: 100%;
-  height: 50px;
+  height: 60px;
   display: flex;
   background-color: var(--primary-color-400);
   padding: 7px 16px;
-  box-shadow: 0px 5px 5px var(--primary-color-700);
-  a {
-    text-decoration: none;
-    color: var(--primary-color-900);
-  }
+  box-shadow: 0 5px 5px var(--primary-color-700);
   div {
     display: flex;
   }
-  .brand-section{
-    justify-content: left;
-    align-items: center;
-    .brand-name {
-      font-size: 2rem;
-    }
-    .brand-logo {
-      height: 3rem;
-      padding: 5px;
-    }
-  }
   .search-section{
     justify-content: center;
-    flex-grow: 2;
+    flex-grow: 1;
     input[type="text"] {
-    font-size: 1.2rem;
+      font-size: 1.2rem;
       flex-basis: 50%;
       border: solid 1px var(--primary-color-900);
       padding: 15px;
@@ -41,20 +26,72 @@ nav {
       border-bottom-left-radius: 25px;
     }
     button{
-      border-left: 0px;
+      padding: 0 25px;
+      border-left: 0;
       border-top-right-radius: 25px;
       border-bottom-right-radius: 25px;
     }
   }
-
   .account-section{
     button{
       border-radius: 25px;
     }
   }
+}
 
-  .icon {
-    color: var(--primary-color-900);
-    margin: 7px;
+footer {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  padding: 30px;
+  background-color: var(--primary-color-400);
+  .newsletter-section {
+    h1 {
+      padding-bottom: 10px;
+    }
+    form {
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+      input[type=email]{
+        height: 35px;
+        border: solid 1px var(--primary-color-900);
+        margin-right: 7px;
+        padding-left: 7px;
+      }
+      button {
+        height: 35px;
+      }
+    }
+  }
+  i {
+    padding: 10px;
+    margin: 8px;
+    border-radius: 50%;
+    background-color: var(--primary-color-200);
+    transition: 0.3s;
+  }
+  i:hover {
+    color: white;
+    background-color: var(--primary-color-900);
+  }
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-color-900);
+  display: flex;
+  align-content: center;
+}
+.brand-section {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  .brand-logo {
+    height: 2.5rem;
+  }
+  .brand-name {
+    font-size: 2rem;
+    padding: 7px;
   }
 }

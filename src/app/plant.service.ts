@@ -20,6 +20,6 @@ export class PlantService {
   }
 
   editPlant(patchedPlant: any): Observable<PlantItem> {
-    return this.http.patch<PlantItem>(this.baseUrl, patchedPlant);
+    return this.http.put<PlantItem>(this.baseUrl, patchedPlant);
   }
 }

@@ -18,34 +18,45 @@ export class PlantDetailsComponent implements OnInit {
   plantService = inject(PlantService);
   plantItem: PlantItem | undefined;
   plantItemId: number;
-  applyForm = new FormGroup({
+  editPlantForm = new FormGroup({
     plantName: new FormControl(""),
     plantLocation: new FormControl(""),
-    plantWaterred: new FormControl(true),
-    waterredDate: new FormControl("1900-01-01"),
+    plantWatered: new FormControl(true),
+    wateredDate: new FormControl("1900-01-01"),
   });
 
   constructor() {
     this.plantItemId = Number(this.route.snapshot.params['id']);
-    this.plantItem = undefined;
   }
 
   ngOnInit(): void{
-    this.plantService.getPlantItemById(this.plantItemId)?.subscribe(plantItem=>(this.plantItem = plantItem));
+    this.plantService.getPlantItemById(this.plantItemId)?.subscribe({
+      next: (plantItem) => this.plantItem = plantItem,
+      error: (e) => console.log(e),
+      complete: () => {
+        console.log("Plant found");
+        this.editPlantForm.patchValue({
+          plantName: this.plantItem?.name,
+          plantLocation: this.plantItem?.location,
+          plantWatered: this.plantItem?.watered,
+          wateredDate: this.plantItem?.wateredDate,
+        });
+    }
+    });
   }
 
   confirmEdit() {
       this.plantService.editPlant({
       id: this.plantItemId,
-      name: this.applyForm.value.plantName ?? '',
-      location: this.applyForm.value.plantLocation ?? '',
-      photo: "/assets/plant.svg",
-      waterred: this.applyForm.value.plantWaterred ?? false,
-      waterredDate: this.applyForm.value.waterredDate ?? '2024-04-22'
-  }).subscribe(
-    (response) => console.log(response),
-    (error: any) => console.log(error),
-    () => console.log("Plant patched")
-  )
+      name: this.editPlantForm.value.plantName ?? this.plantItem?.name,
+      location: this.editPlantForm.value.plantLocation ?? this.plantItem?.location,
+      photo: this.plantItem?.photo,
+      watered: this.editPlantForm.value.plantWatered ?? this.plantItem?.watered,
+      wateredDate: this.editPlantForm.value.wateredDate ?? this.plantItem?.wateredDate
+  }).subscribe({
+    next:  (v) => console.log("Editing plant in progress"),
+    error:  (e) => console.log(e),
+    complete: () => console.log("Plant patched")
+  })
   }
 }
