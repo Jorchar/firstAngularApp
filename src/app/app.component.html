@@ -1,7 +1,7 @@
 <header>
   <nav>
     <div class="brand-section">
-      <i class="fa-solid fa-bars"></i>
+      <i class="fa-solid fa-bars" (click)="drawer.toggle()"></i>
       <a class="brand-name" href="">
         <img class="brand-logo" src="../assets/logo.svg" alt="logo" aria-hidden="true"/>
         WATERING PLANT
@@ -19,41 +19,50 @@
   </nav>
 </header>
 <main>
-  <app-loading-indicator/>
-  <section class="content">
-    <router-outlet>
-    </router-outlet>
-  </section>
+  <mat-drawer-container class="drawer-container" [hasBackdrop]=false>
+    <mat-drawer #drawer autoFocus=false>
+      <a href="">Home</a>
+      <a>Calendar</a>
+      <a>Account</a>
+    </mat-drawer>
+    <mat-drawer-content>
+      <app-loading-indicator/>
+      <section class="content">
+        <router-outlet>
+        </router-outlet>
+      </section>
+    </mat-drawer-content>
+  </mat-drawer-container>
 </main>
 <footer>
-    <div class="contact-section">
-      <div class="brand-section">
-        <a class="brand-name" href="">
-          <img class="brand-logo" src="../assets/logo.svg" alt="logo" aria-hidden="true"/>
-          WATERING PLANT
-        </a>
-      </div>
-      <p>
-        Make sure your plants are in safe hands.<br>
-        Join us in growing everyday!
-      </p>
-      <div class="social-container">
-        <i class="fa-brands fa-facebook"></i>
-        <i class="fa-brands fa-x-twitter"></i>
-        <i class="fa-brands fa-youtube"></i>
-      </div>
-      <p>
-        Copyrigths &#64; 2024 Jorchar
-      </p>
+  <div class="contact-section">
+    <div class="brand-section">
+      <a class="brand-name" href="">
+        <img class="brand-logo" src="../assets/logo.svg" alt="logo" aria-hidden="true"/>
+        WATERING PLANT
+      </a>
     </div>
-    <div class="newsletter-section">
-      <h1>NEWSLETTER</h1>
-      <p>Subcribe to our newsletter for regular updates</p>
-      <form>
-        <input type="email" name="email" placeholder="your@email.com">
-        <button type="submit" class="newsletter-button">
-          I'm in!
-        </button>
-      </form>
+    <p>
+      Make sure your plants are in safe hands.<br>
+      Join us in growing everyday!
+    </p>
+    <div class="social-container">
+      <i class="fa-brands fa-facebook"></i>
+      <i class="fa-brands fa-x-twitter"></i>
+      <i class="fa-brands fa-youtube"></i>
     </div>
+    <p>
+      Copyrigths &#64; 2024 Jorchar
+    </p>
+  </div>
+  <div class="newsletter-section">
+    <h1>NEWSLETTER</h1>
+    <p>Subcribe to our newsletter for regular updates</p>
+    <form>
+      <input type="email" name="email" placeholder="your@email.com">
+      <button type="submit" class="newsletter-button">
+        I'm in!
+      </button>
+    </form>
+  </div>
 </footer>
