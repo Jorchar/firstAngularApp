@@ -1,5 +1,21 @@
+.drawer-container{
+  position: relative;
+  z-index: 4;
+  height: 70vh;
+  background: linear-gradient( rgba(220, 255, 120, 0.5), rgba(220, 255, 120, 0.5) ), url('../assets/plant_bg.jpg');
+  background-size: cover;
+  mat-drawer{
+    width: 250px;
+    background-color: var(--primary-color-300);
+    padding: 7px 15px;
+    a{
+      font-size: large;
+      padding-bottom: 7px;
+    }
+  }
+}
 .content {
-  margin: 70px 10px 20px 10px;
+  margin: 60px 10px 20px 10px;
 }
 nav {
   position: fixed;
@@ -13,6 +29,18 @@ nav {
   box-shadow: 0 5px 5px var(--primary-color-700);
   div {
     display: flex;
+  }
+  .brand-section {
+    i{
+      border-radius: 15px;
+      padding: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    i:hover {
+      background-color: var(--primary-color-300);
+      box-shadow: 0 0 5px var(--primary-color-300);
+    }
   }
   .search-section{
     justify-content: center;
@@ -41,10 +69,26 @@ nav {
 
 footer {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
+  gap: 1rem;
   justify-content: space-around;
   padding: 30px;
   background-color: var(--primary-color-400);
+
+  @media only screen and (max-width: 800px) {
+    div{
+      text-align: center;
+      justify-content: center;
+    }
+    form{
+      justify-content: center;
+    }
+  }
+  div {
+    min-width: fit-content;
+    flex: 1;
+  }
   .newsletter-section {
     h1 {
       padding-bottom: 10px;

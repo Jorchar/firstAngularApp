@@ -41,9 +41,8 @@ body {
   color: var(--primary-color-900);
 }
 
-html {
-  background: linear-gradient( rgba(220, 255, 120, 0.5), rgba(220, 255, 120, 0.5) ), url('./assets/plant_bg.jpg');
-  background-size: cover;
+main {
+  margin-top: 40px;
 }
 
 button {
