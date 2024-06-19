@@ -1,8 +1,8 @@
 import {PlantService} from "./plant.service";
 import {TestBed} from "@angular/core/testing";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {PlantItem} from "./plantItem";
-import {asyncScheduler, scheduled} from "rxjs";
+import {asyncScheduler, scheduled, throwError} from "rxjs";
 
 describe('PlantService', () => {
   let service: PlantService;
@@ -40,5 +40,25 @@ describe('PlantService', () => {
       error: done.fail,
     });
     expect(httpClientSpy.get.calls.count()).toBe(1);
+  });
+
+  it('#getPlantItemById should return error', (done: DoneFn) => {
+    const errorResponse = new HttpErrorResponse({
+      error: 'test 404 error',
+      status: 404,
+      statusText: 'Not Found',
+    });
+    httpClientSpy.get.and.returnValue(throwError(() => errorResponse));
+
+    // @ts-ignore
+    service.getPlantItemById(0).subscribe({
+      next: (plant) => {
+        done.fail('expected error, received plant');
+      },
+      error: (error) => {
+        expect(error.error).toContain('test 404 error');
+        done();
+      }
+    });
   });
 });
