@@ -5,6 +5,7 @@ import { PlantItemComponent } from "../plant-item/plant-item.component";
 import { PlantItem } from "../plantItem";
 import { PlantService } from "../plant.service";
 import {LoadingService} from "../loading.service";
+import {GlobalErrorHandlerService} from "../global-error-handler.service";
 
 @Component({
   selector: "app-home",
@@ -16,6 +17,7 @@ import {LoadingService} from "../loading.service";
 export class HomeComponent implements OnInit {
   plantItemList: PlantItem[] = [];
   plantService: PlantService = inject(PlantService);
+  globalErrorHandler: GlobalErrorHandlerService = inject(GlobalErrorHandlerService);
 
   constructor( private loadingService: LoadingService) {}
 
@@ -24,8 +26,8 @@ export class HomeComponent implements OnInit {
     this.plantService.getAllPlantItems().subscribe({
       next: (plantItemList) => this.plantItemList = plantItemList,
       error: (e) => {
-        console.log(e);
         this.loadingService.loadingOff();
+        this.globalErrorHandler.errorHandle(e, 'Could not fetch plants');
       },
       complete: () => {
         console.log("Plants fetched");
