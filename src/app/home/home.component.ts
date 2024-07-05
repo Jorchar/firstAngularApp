@@ -1,6 +1,5 @@
 import { Component, inject, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
-
 import { PlantItemComponent } from "../plant-item/plant-item.component";
 import { PlantItem } from "../plantItem";
 import { PlantService } from "../plant.service";
