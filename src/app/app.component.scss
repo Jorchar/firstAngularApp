@@ -1,13 +1,17 @@
 .drawer-container{
-  position: relative;
+  position: fixed;
+  top: 0;
+  padding-top: 60px;
   z-index: 4;
-  height: 70vh;
+  height: 100%;
+  width: 100%;
   background: linear-gradient( rgba(220, 255, 120, 0.5), rgba(220, 255, 120, 0.5) ), url('../assets/plant_bg.jpg');
   background-size: cover;
   mat-drawer{
+    z-index: 5;
     width: 250px;
     background-color: var(--primary-color-300);
-    padding: 20px 15px;
+    padding: 80px 15px;
     a{
       font-size: large;
       padding-bottom: 7px;
@@ -16,35 +20,34 @@
 }
 .content {
   margin: 30px 10px 20px 10px;
+  min-height: 90%;
 }
 nav {
   position: fixed;
-  z-index: 5;
-  top: 0;
-  width: 100%;
+  z-index: 6;
   height: 60px;
+  width: 100%;
   display: flex;
+  justify-content: space-between;
   background-color: var(--primary-color-400);
   padding: 7px 16px;
   box-shadow: 0 5px 5px var(--primary-color-700);
   div {
     display: flex;
   }
-  .brand-section {
-    i{
-      border-radius: 15px;
-      padding: 15px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    i:hover {
-      background-color: var(--primary-color-300);
-      box-shadow: 0 0 5px var(--primary-color-300);
-    }
+  .nav-icon{
+    border-radius: 15px;
+    padding: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .nav-icon:hover {
+    background-color: var(--primary-color-300);
+    box-shadow: 0 0 5px var(--primary-color-300);
   }
   .search-section{
     justify-content: center;
-    flex-grow: 1;
+    width: 80%;
     input[type="text"] {
       font-size: 1.2rem;
       flex-basis: 50%;
@@ -53,16 +56,45 @@ nav {
       border-top-left-radius: 25px;
       border-bottom-left-radius: 25px;
     }
-    button{
+    .search-button-wide{
       padding: 0 25px;
       border-left: 0;
       border-top-right-radius: 25px;
       border-bottom-right-radius: 25px;
     }
+    .search-short-hide-icon{
+      display: none;
+    }
   }
   .account-section{
-    button{
-      border-radius: 25px;
+    .search-icon-short{
+      @media only screen and (min-width: 800px) {
+        display: none;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 800px) {
+  nav{
+    .search-section{
+      width: 0;
+      overflow: hidden;
+    }
+  }
+  nav:focus-within{
+    .search-section{
+      width: 100%;
+      overflow: visible;
+      input{
+        flex-basis: 100%;
+      }
+      .search-short-hide-icon{
+        padding-right: 10px;
+        display: block;
+      }
+    }
+    .brand-section, .account-section{
+      display: none;
     }
   }
 }
@@ -71,9 +103,10 @@ footer {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  min-width: fit-content;
   gap: 1rem;
   justify-content: space-around;
-  padding: 30px;
+  padding: 40px;
   background-color: var(--primary-color-400);
 
   @media only screen and (max-width: 800px) {
@@ -108,16 +141,20 @@ footer {
       }
     }
   }
-  i {
-    padding: 10px;
-    margin: 8px;
-    border-radius: 50%;
-    background-color: var(--primary-color-200);
-    transition: 0.3s;
-  }
-  i:hover {
-    color: white;
-    background-color: var(--primary-color-900);
+  .social-container{
+    i {
+      cursor: pointer;
+      padding: 10px;
+      margin: 8px;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      background-color: var(--primary-color-200);
+      transition: 0.3s;
+    }
+    i:hover {
+      color: white;
+      background-color: var(--primary-color-900);
+    }
   }
 }
 
@@ -135,6 +172,7 @@ a {
     height: 2.5rem;
   }
   .brand-name {
+    white-space: nowrap;
     font-size: 2rem;
     padding: 7px;
   }

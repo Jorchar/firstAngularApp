@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import {Component, ViewChild} from "@angular/core";
 import { HomeComponent } from "./home/home.component";
 import { RouterModule } from "@angular/router";
 import {LoadingIndicatorComponent} from "./loading-indicator/loading-indicator.component";
@@ -13,4 +13,18 @@ import {MatDrawerContainer, MatDrawerContent, MatDrawer} from "@angular/material
 })
 export class AppComponent {
   title = "WateringPlantApp";
+  @ViewChild('searchInput') searchInput: any;
+
+  onUserIconClick() {
+    console.log("clicked");
+  }
+
+  onShortSearchClick() {
+    this.searchInput.nativeElement.focus();
+    console.log("tak");
+  }
+
+  onShortSearchBackClick() {
+    this.searchInput.nativeElement.focusout();
+  }
 }
