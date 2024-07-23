@@ -5,4 +5,5 @@ export interface PlantItem {
   photo: string;
   watered: boolean;
   wateredDate: string;
+  daysBetweenHydrate: number;
 }

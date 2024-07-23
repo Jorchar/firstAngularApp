@@ -1,24 +1,27 @@
-<header>
-  <nav>
+<nav>
     <div class="brand-section">
-      <i class="fa-solid fa-bars" (click)="drawer.toggle()"></i>
+      <i class="fa-solid fa-bars nav-icon" (click)="drawer.toggle()"></i>
       <a class="brand-name" href="">
         <img class="brand-logo" src="../assets/logo.svg" alt="logo" aria-hidden="true"/>
         WATERING PLANT
       </a>
     </div>
     <div class="search-section">
-      <input type="text" placeholder="Filter by plant"/>
-      <button>
+      <div class="search-short-hide-icon">
+        <i class="fa-solid fa-arrow-left nav-icon" (click)="onShortSearchBackClick()"></i>
+      </div>
+      <input #searchInput type="text" placeholder="Filter by plant"/>
+      <button class="search-button-wide">
         <i class="fa-solid fa-search"></i>
       </button>
     </div>
     <div class="account-section">
-      <button>Login</button>
+      <div class="search-icon-short">
+        <i class="fa-solid fa-search nav-icon" (click)="onShortSearchClick()"></i>
+      </div>
+        <i class="fa-solid fa-user nav-icon" (click)="onUserIconClick()"></i>
     </div>
   </nav>
-</header>
-<main>
   <mat-drawer-container class="drawer-container" [hasBackdrop]=false>
     <mat-drawer #drawer autoFocus=false>
       <a href="">Home</a>
@@ -31,38 +34,37 @@
         <router-outlet>
         </router-outlet>
       </section>
+      <footer>
+        <div class="contact-section">
+          <div class="brand-section">
+            <a class="brand-name" href="">
+              <img class="brand-logo" src="../assets/logo.svg" alt="logo" aria-hidden="true"/>
+              WATERING PLANT
+            </a>
+          </div>
+          <p>
+            Make sure your plants are in safe hands.<br>
+            Join us in growing everyday!
+          </p>
+          <div class="social-container">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-x-twitter"></i>
+            <i class="fa-brands fa-youtube"></i>
+          </div>
+          <p>
+            Copyrigths &#64; 2024 Jorchar
+          </p>
+        </div>
+        <div class="newsletter-section">
+          <h1>NEWSLETTER</h1>
+          <p>Subcribe to our newsletter for regular updates</p>
+          <form>
+            <input type="email" name="email" placeholder="your@email.com">
+            <button type="submit" class="newsletter-button">
+              I'm in!
+            </button>
+          </form>
+        </div>
+      </footer>
     </mat-drawer-content>
   </mat-drawer-container>
-</main>
-<footer>
-  <div class="contact-section">
-    <div class="brand-section">
-      <a class="brand-name" href="">
-        <img class="brand-logo" src="../assets/logo.svg" alt="logo" aria-hidden="true"/>
-        WATERING PLANT
-      </a>
-    </div>
-    <p>
-      Make sure your plants are in safe hands.<br>
-      Join us in growing everyday!
-    </p>
-    <div class="social-container">
-      <i class="fa-brands fa-facebook"></i>
-      <i class="fa-brands fa-x-twitter"></i>
-      <i class="fa-brands fa-youtube"></i>
-    </div>
-    <p>
-      Copyrigths &#64; 2024 Jorchar
-    </p>
-  </div>
-  <div class="newsletter-section">
-    <h1>NEWSLETTER</h1>
-    <p>Subcribe to our newsletter for regular updates</p>
-    <form>
-      <input type="email" name="email" placeholder="your@email.com">
-      <button type="submit" class="newsletter-button">
-        I'm in!
-      </button>
-    </form>
-  </div>
-</footer>

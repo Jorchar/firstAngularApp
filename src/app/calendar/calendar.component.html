@@ -1,11 +1,11 @@
 <div class="container">
   <div class="header">
-    <button mat-icon-button (click)="previousClicked()">
-      <mat-icon>keyboard_arrow_left</mat-icon>
+    <button (click)="previousClicked()">
+      <i class="fa-solid fa-chevron-left"></i>
     </button>
     <span class="header-label">{{ periodLabel() }}</span>
-    <button mat-icon-button (click)="nextClicked()">
-      <mat-icon>keyboard_arrow_right</mat-icon>
+    <button (click)="nextClicked()">
+      <i class="fa-solid fa-chevron-right"></i>
     </button>
   </div>
   <div class="calendar">

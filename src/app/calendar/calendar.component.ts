@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit, signal} from '@angular/core';
 import {DateAdapter, MAT_DATE_FORMATS, MatDateFormats, provideNativeDateAdapter} from "@angular/material/core";
 import {MatButtonModule} from "@angular/material/button";
-import {MatIconModule} from "@angular/material/icon";
 import {CommonModule} from "@angular/common";
 
 interface CalendarDay {
@@ -16,7 +15,6 @@ interface CalendarDay {
   providers: [provideNativeDateAdapter()],
   imports: [
     MatButtonModule,
-    MatIconModule,
     CommonModule
   ],
   standalone: true

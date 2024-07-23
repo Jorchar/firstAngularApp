@@ -7,6 +7,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    button{
+      //background: var(--primary-color-300);
+    }
     .header-label {
       height: 1em;
       padding: 0 4em;
@@ -15,7 +18,7 @@
     }
   }
   .calendar{
-    width: 80vw;
+    width: 60vw;
     display: flex;
     align-items: center;
     justify-content: center;
