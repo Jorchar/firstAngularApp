@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
       next: (plantItemList) => this.plantItemList = plantItemList,
       error: (e) => {
         this.loadingService.loadingOff();
-        this.globalErrorHandler.errorHandle(e, 'Could not fetch plants');
+        this.globalErrorHandler.errorHandle('Could not fetch plants', e);
       },
       complete: () => {
         console.log("Plants fetched");

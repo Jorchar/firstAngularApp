@@ -1,10 +1,10 @@
-import { Component, inject, OnInit } from "@angular/core";
-import { formatDate } from "@angular/common"
-import { PlantService } from "../plant.service";
-import { PlantItem } from "../plantItem";
-import { ActivatedRoute } from "@angular/router";
-import { MatButtonModule } from "@angular/material/button";
-import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import {Component, inject, OnInit} from "@angular/core";
+import {PlantService} from "../plant.service";
+import {PlantItem} from "../plantItem";
+import {ActivatedRoute} from "@angular/router";
+import {MatButtonModule} from "@angular/material/button";
+import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: "app-plant-details",
@@ -21,15 +21,23 @@ export class PlantDetailsComponent implements OnInit {
   editPlantForm = new FormGroup({
     plantName: new FormControl(""),
     plantLocation: new FormControl(""),
-    plantWatered: new FormControl(true),
+    daysBetweenHydrate: new FormControl(0),
     wateredDate: new FormControl("1900-01-01"),
   });
 
-  constructor() {
+  constructor(private sanitizer: DomSanitizer) {
     this.plantItemId = Number(this.route.snapshot.params['id']);
   }
 
-  ngOnInit(): void{
+  transform() {
+    if (this.plantItem) {
+      return this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64, ' + this.plantItem.photo);
+    } else {
+      return null;
+    }
+  }
+
+  ngOnInit(): void {
     this.plantService.getPlantItemById(this.plantItemId)?.subscribe({
       next: (plantItem) => this.plantItem = plantItem,
       error: (e) => console.log(e),
@@ -38,25 +46,25 @@ export class PlantDetailsComponent implements OnInit {
         this.editPlantForm.patchValue({
           plantName: this.plantItem?.name,
           plantLocation: this.plantItem?.location,
-          plantWatered: this.plantItem?.watered,
+          daysBetweenHydrate: this.plantItem?.daysBetweenHydrate,
           wateredDate: this.plantItem?.wateredDate,
         });
-    }
+      }
     });
   }
 
   confirmEdit() {
-      this.plantService.editPlant({
+    this.plantService.editPlant({
       id: this.plantItemId,
       name: this.editPlantForm.value.plantName ?? this.plantItem?.name,
       location: this.editPlantForm.value.plantLocation ?? this.plantItem?.location,
       photo: this.plantItem?.photo,
-      watered: this.editPlantForm.value.plantWatered ?? this.plantItem?.watered,
+      daysBetweenHydrate: this.editPlantForm.value.daysBetweenHydrate ?? this.plantItem?.daysBetweenHydrate,
       wateredDate: this.editPlantForm.value.wateredDate ?? this.plantItem?.wateredDate
-  }).subscribe({
-    next:  (v) => console.log("Editing plant in progress"),
-    error:  (e) => console.log(e),
-    complete: () => console.log("Plant patched")
-  })
+    }).subscribe({
+      next: () => console.log("Editing plant in progress"),
+      error: (e) => console.log(e),
+      complete: () => console.log("Plant patched")
+    })
   }
 }

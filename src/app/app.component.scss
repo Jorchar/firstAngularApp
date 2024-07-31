@@ -49,12 +49,9 @@ nav {
     justify-content: center;
     width: 80%;
     input[type="text"] {
-      font-size: 1.2rem;
       flex-basis: 50%;
-      border: solid 1px var(--primary-color-900);
-      padding: 15px;
-      border-top-left-radius: 25px;
-      border-bottom-left-radius: 25px;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
     }
     .search-button-wide{
       padding: 0 25px;
@@ -133,6 +130,7 @@ footer {
       input[type=email]{
         height: 35px;
         border: solid 1px var(--primary-color-900);
+        border-radius: 0;
         margin-right: 7px;
         padding-left: 7px;
       }

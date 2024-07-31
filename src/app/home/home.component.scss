@@ -4,3 +4,14 @@
   row-gap: 14px;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
+.plant-add-button{
+  position: fixed;
+  height: 80px;
+  width: 80px;
+  border-radius: 40px;
+  bottom: 50px;
+  right: 50px;
+  i{
+    transform: scale(2);
+  }
+}

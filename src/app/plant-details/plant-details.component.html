@@ -1,17 +1,18 @@
-<article>
-  <section class="listing-description">
-  <img class="listing-photo" [src]="plantItem?.photo">
-  <form [formGroup]="editPlantForm" (submit)="confirmEdit()">
-    <label for="plant-name">Plant name</label><br>
-    <input id="plant-name" type="text" formControlName="plantName"><br>
-    <label for="plant-location">Plant location</label><br>
-    <input id="plant-location" type="text" formControlName="plantLocation"><br>
-    <label for="plant-watered">Waterred</label><br>
-    <input id="plant-watered" type="checkbox" formControlName="plantWatered"><br>
-    <label for="plant-watered-date">Waterred date</label><br>
-    <input id="plant-watered-date" type="date" formControlName="wateredDate"><br>
-    <br>
-    <button mat-flat-button type="submit">CONFIRM</button>
-  </form>
-  </section>
-</article>
+<div class="details-container">
+    <form [formGroup]="editPlantForm" (submit)="confirmEdit()">
+      <div class="input-container">
+        <label for="plant-name">Plant name</label>
+        <input id="plant-name" type="text" formControlName="plantName">
+        <label for="plant-location">Plant location</label>
+        <input id="plant-location" type="text" formControlName="plantLocation">
+        <label for="plant-watered">Days between hydrate</label>
+        <input id="plant-watered" type="number" formControlName="daysBetweenHydrate">
+        <label for="plant-watered-date">Waterred date</label>
+        <input id="plant-watered-date" type="date" formControlName="wateredDate">
+      </div>
+      <button type="submit">CONFIRM</button>
+    </form>
+  <div class="image-container">
+    <img class="photo" [src]="transform()" alt="Plant image">
+  </div>
+ </div>
