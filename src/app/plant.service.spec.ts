@@ -25,8 +25,8 @@ describe('PlantService', () => {
       location: "",
       name: "",
       photo: "",
-      watered: false,
-      wateredDate: ""
+      wateredDate: "",
+      daysBetweenHydrate: 7
     };
 
     httpClientSpy.get.and.returnValue(scheduled([expectedPlant], asyncScheduler));
@@ -53,7 +53,7 @@ describe('PlantService', () => {
     // @ts-ignore
     service.getPlantItemById(0).subscribe({
       next: (plant) => {
-        done.fail('expected error, received plant');
+        done.fail('expected error, received plant:'+plant.name);
       },
       error: (error) => {
         expect(error.error).toContain('test 404 error');

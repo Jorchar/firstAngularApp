@@ -8,7 +8,7 @@ export class GlobalErrorHandlerService {
   durationInSeconds = 5;
   constructor(private _snackBar: MatSnackBar) {}
 
-  errorHandle(error: Error,message: string) {
+  errorHandle(message: string, error?: Error) {
       this._snackBar.open(message, "", {
         duration: this.durationInSeconds * 1000,
       });
