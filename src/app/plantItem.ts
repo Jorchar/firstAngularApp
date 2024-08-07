@@ -1,3 +1,5 @@
+import {SafeResourceUrl} from "@angular/platform-browser";
+
 export interface PlantItem {
   id: number;
   name: string;
@@ -5,4 +7,5 @@ export interface PlantItem {
   photo: string;
   wateredDate: string;
   daysBetweenHydrate: number;
+  safePhotoUrl: SafeResourceUrl | null;
 }

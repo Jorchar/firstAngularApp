@@ -1,0 +1,5 @@
+<div class="dropzone" appDragAndDrop (fileDropped)="onImageDropped($event)">
+  <input type="file" #fileDropRef id="fileDropRef" accept="image/*" (change)="imageBrowsedHandler($event)"/>
+  <i class="fa-solid fa-file-circle-plus"></i>
+  <h3>Drag and drop file here</h3>
+</div>

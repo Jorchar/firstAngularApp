@@ -4,7 +4,6 @@ import {PlantItem} from "../plantItem";
 import {ActivatedRoute} from "@angular/router";
 import {MatButtonModule} from "@angular/material/button";
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
-import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: "app-plant-details",
@@ -16,7 +15,7 @@ import {DomSanitizer} from "@angular/platform-browser";
 export class PlantDetailsComponent implements OnInit {
   route: ActivatedRoute = inject(ActivatedRoute);
   plantService = inject(PlantService);
-  plantItem: PlantItem | undefined;
+  plantItem!: PlantItem;
   plantItemId: number;
   editPlantForm = new FormGroup({
     plantName: new FormControl(""),
@@ -25,16 +24,8 @@ export class PlantDetailsComponent implements OnInit {
     wateredDate: new FormControl("1900-01-01"),
   });
 
-  constructor(private sanitizer: DomSanitizer) {
+  constructor() {
     this.plantItemId = Number(this.route.snapshot.params['id']);
-  }
-
-  transform() {
-    if (this.plantItem) {
-      return this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64, ' + this.plantItem.photo);
-    } else {
-      return null;
-    }
   }
 
   ngOnInit(): void {

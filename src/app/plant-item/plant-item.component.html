@@ -1,5 +1,5 @@
 <section class="listing">
-  <img class="listing-photo" [src]="transform()" alt="Image of {{plantItem.name}}">
+  <img class="listing-photo" [src]="plantItem.safePhotoUrl" onerror="this.onerror=null; this.src='../../assets/logo.svg'" alt="Image of {{plantItem.name}}">
   <h2 class="listing-heading">{{plantItem.name}}</h2>
   <p class="listing-location">{{plantItem.location}}</p>
   <div>

@@ -13,6 +13,6 @@
       <button type="submit">CONFIRM</button>
     </form>
   <div class="image-container">
-    <img class="photo" [src]="transform()" alt="Plant image">
+    <img class="photo" [src]="plantItem.safePhotoUrl" onerror="this.onerror=null; this.src='../../assets/logo.svg'" alt="Plant image">
   </div>
  </div>

@@ -1,23 +1,19 @@
 <div class="plant-add-container">
-  <form>
+  <form [formGroup]="addPlantForm" (submit)="confirmAdd()">
     <div class="input-container">
-      <label>PLANT NAME</label>
-      <input type="text" name="plant_name">
-      <label>PLANT LOCATION</label>
-      <input type="text" name="plant_location">
-      <label>LAST WATTERED DATE</label>
-      <input type="date" name="waterred_date">
-      <label>DAYS BETWEEN HYDRATE</label>
-      <input type="number" name="days_between_watered">
+      <label for="plant-name">PLANT NAME</label>
+      <input type="text" id="plant-name" formControlName="plantName">
+      <label for="plant-location">PLANT LOCATION</label>
+      <input type="text" id="plant-location" formControlName="plantLocation">
+      <label for="waterred-date">LAST WATTERED DATE</label>
+      <input type="date" id="waterred-date" formControlName="waterredDate">
+      <label for="days-between-watered">DAYS BETWEEN HYDRATE</label>
+      <input type="number" id="days-between-watered" formControlName="daysBetweenHydrate">
       <label>PLANT IMAGE</label>
       <ng-container *ngIf="image">
         <img [src]="image" alt="selected image">
       </ng-container>
-      <div class="dropzone" appDragAndDrop (fileDropped)="onImageDropped($event)">
-        <input type="file" #fileDropRef id="fileDropRef" accept="image/*" (change)="imageBrowsedHandler($event)"/>
-        <i class="fa-solid fa-file-circle-plus"></i>
-        <h3>Drag and drop file here</h3>
-      </div>
+      <app-drag-and-drop (onImagePrepared)="prepareImage($event)"></app-drag-and-drop>
     </div>
     <button type="submit" class="plant-add-button">DONE</button>
   </form>
