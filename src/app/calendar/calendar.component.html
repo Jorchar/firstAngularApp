@@ -1,24 +1,24 @@
-<div class="container">
+<div class="calendar">
   <div class="header">
     <button (click)="previousClicked()">
       <i class="fa-solid fa-chevron-left"></i>
     </button>
-    <span class="header-label">{{ periodLabel() }}</span>
+    <h3 class="header-label">{{ periodLabel() }}</h3>
     <button (click)="nextClicked()">
       <i class="fa-solid fa-chevron-right"></i>
     </button>
   </div>
-  <div class="calendar">
+  <div *ngIf="showCalendar" class="table-container">
     <table>
       <tbody>
       <tr>
-        <th *ngFor="let day of days">
+        <th *ngFor="let day of weekDays">
           <p>{{ day }}</p>
         </th>
       </tr>
-      <tr *ngFor="let row of [0,1,2,3,4,5]">
+      <tr class="calendar-rows" *ngFor="let row of [0,1,2,3,4,5]">
         <td *ngFor="let col of [0,1,2,3,4,5,6]">
-          <ng-container *ngTemplateOutlet="dayTemplate;context:getCellDate(row*7+col)"></ng-container>
+          <ng-container *ngTemplateOutlet="cellTemplate;context:getCellData(row*7+col)"></ng-container>
         </td>
       </tr>
       </tbody>
@@ -26,13 +26,20 @@
   </div>
 </div>
 
-
-<ng-template #dayTemplate let-date="date" let-icons="icons">
-  <div class="date-cell">
-    <h2>{{ date.getDate() }}</h2>
-    <div>
-      <i class="fa-solid fa-seedling"></i>
-      <i class="fa-solid fa-spoon"></i>
+<ng-template #cellTemplate let-cellDate="date" let-showPlantIcon="icon" let-cellId="cellId" let-plants="plants" let-currentStyle="currentStyle" let-isOpen="isOpen">
+  <div class="date-cell" #el [@openClosed]="isOpen ? 'open' : 'closed'" (@openClosed.done)="dateDetailsAnimDone(isOpen, cellId)" (click)="cellClicked(el, cellId)" [ngStyle]="currentStyle" appHighlightDate [cellDate]=cellDate [displayedMonth]="firstDateOfMonth.getMonth()">
+    <div *ngIf=showPlantIcon>
+      <i class="fa-solid fa-seedling bg"></i>
+    </div>
+    <div *ngIf="isOpen" class="close-button" (click)="closeDetails(cellId, $event)">
+      <i class="fa-solid fa-xmark"></i>
+    </div>
+    <div class="date-cell-header">
+      <h2>{{ cellDate.getDate() }}</h2>
+    </div>
+    <div class="date-plant-list" *ngFor="let plant of plants">
+      <h3>{{ plant.name }}</h3>
+      <p>{{ plant.wateredDate }}</p>
     </div>
   </div>
 </ng-template>

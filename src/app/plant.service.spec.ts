@@ -26,7 +26,8 @@ describe('PlantService', () => {
       name: "",
       photo: "",
       wateredDate: "",
-      daysBetweenHydrate: 7
+      daysBetweenHydrate: 7,
+      safePhotoUrl: null
     };
 
     httpClientSpy.get.and.returnValue(scheduled([expectedPlant], asyncScheduler));

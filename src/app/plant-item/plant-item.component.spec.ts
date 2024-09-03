@@ -26,8 +26,9 @@ describe('PlantItemComponent', () => {
       name: "yuka",
       location: "kitchen",
       photo: "/assets/plant.jpg",
-      watered: true,
       wateredDate: "2021-01-16",
+      daysBetweenHydrate: 7,
+      safePhotoUrl: null
     };
     fixture.detectChanges();
   });

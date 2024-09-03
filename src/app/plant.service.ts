@@ -32,6 +32,10 @@ export class PlantService {
     );
   }
 
+  getAllPlantItemsWithoutPhoto(): Observable<PlantItem[]> {
+    return this.http.get<PlantItem[]>(this.baseUrl+"/info")
+  }
+
   editPlant(patchedPlant: any): Observable<PlantItem> {
     return this.http.put<PlantItem>(this.baseUrl, patchedPlant);
   }
